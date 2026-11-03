@@ -23,7 +23,7 @@ This is the portable **Agent Plugins** format: `plugin.json` and `mcp.json` at t
 
 ## 0. Before you start
 
-You need all of these before you can submit (you can upload earlier and fix things as you go):
+You need all of these before you can submit (you can upload earlier and fix things as you go). At a larger company, read the [addendum](#addendum-at-a-larger-company) first.
 
 - [ ] **An MCP server on a stable, public HTTPS address**, using Streamable HTTP.
 - [ ] **Annotations on every tool:** `readOnlyHint`, `destructiveHint` and `openWorldHint`, each set to `true` or `false`. Justifications are no longer required.
@@ -246,3 +246,34 @@ Avoid OpenAI's other route for this, giving Plugin Creator a `plugin_asdk_app…
 - **No secrets anywhere in the ZIP:** no headers, client secrets, test credentials or reviewer instructions.
 - **No skill needed.** A ZIP with only an MCP server uploads fine (tested November 2, 2026), although OpenAI's error list says a public ZIP needs at least one skill (`plugin_runtime_surface_missing`).
 - **Don't name other AI assistants** (Claude, Gemini, Copilot…) in your name or descriptions. The automated scan flags it: "The plugin's name or description references another AI assistant, model, or platform." It's an info finding, not a blocking one, but it's better to avoid it.
+
+---
+
+## Addendum: at a larger company
+
+At a big company, most of these steps belong to other teams. Line them up before you upload.
+
+**Settle two things first**
+
+1. **The hostname.** Check whether another plugin has already verified your MCP host:
+
+   ```
+   curl https://mcp.acme.com/.well-known/openai-apps-challenge
+   ```
+
+   If a token comes back, that address is taken: it holds one token, and you mustn't replace another plugin's. Give your server its own hostname (for example `notes.mcp.acme.com`). The root (`acme.com`) only works if it serves the file itself, with no redirect to `www`. This happens in practice: we found a large vendor whose MCP host already holds a token, and whose root redirects to `www`.
+2. **A URL that never changes.** Leave versions out of the path (`/v2/mcp`). Changing a submitted URL means contacting OpenAI support.
+
+**Who you'll need**
+
+| What OpenAI needs | Usually owned by |
+|---|---|
+| A verified OpenAI organization in the company's name, and Owner or Apps Management Write | Your company's OpenAI admins |
+| A project with global data residency, not EU | The same admins |
+| The MCP server on a company hostname, and the domain token served there | Platform or infrastructure (a production change) |
+| Privacy, terms and support pages that name the company | Legal and support |
+| OAuth with the company's identity provider | Security or identity |
+| A reviewer test account without MFA | Security (ask early: it often clashes with policy) |
+| Listing text, category, demo video | Product and marketing |
+
+**Your draft waits for you.** The portal saves it, so you can upload, get the domain token, file the change request, and come back days later to verify. An unsubmitted draft can also be deleted.
