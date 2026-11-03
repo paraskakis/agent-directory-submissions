@@ -27,8 +27,10 @@ You need all of these before you can submit (you can upload earlier and fix thin
 
 - [ ] **An MCP server on a stable, public HTTPS address**, using Streamable HTTP.
 - [ ] **Annotations on every tool:** `readOnlyHint`, `destructiveHint` and `openWorldHint`, each set to `true` or `false`. Justifications are no longer required.
+- [ ] **Tool descriptions that start with "Use this when…"** and say what the tool is not for.
 - [ ] **No auth, or OAuth.** The portal has no API-key option.
-- [ ] **An OpenAI Platform organization you can submit from:** you're an owner, or an owner gave you **Apps Management Write**. The organization has completed individual or business verification.
+- [ ] **An OpenAI Platform organization you can submit from:** you're an owner, or an owner gave you **Apps Management Write**. The organization has completed individual or business verification. Use a project with global data residency: projects with EU data residency can't submit plugins with MCP servers yet.
+- [ ] **A plugin that fits the rules:** suitable for users aged 13–17 (no 18+ plugins yet), and if it sells anything, physical goods only. No subscriptions, digital content, tokens or credits.
 - [ ] **Four public HTTPS pages:** website, support, privacy policy, terms of service. They must be reachable and name the same publisher as your submission.
 - [ ] **A square icon:** PNG, JPEG, WebP or SVG, at least 48×48 px, at most 5 MiB.
 - [ ] **A way to put a file on your MCP server's domain** at `/.well-known/openai-apps-challenge` (for domain verification, step 9).
@@ -78,9 +80,9 @@ Go top to bottom. Limits are for public submission and count every character, sp
 
 | Field | Change it to | Rule |
 |---|---|---|
-| `displayName` | Your product's name | Max 30 |
-| `shortDescription` | The subtitle shown under the name | Max 30 |
-| `longDescription` | What it does, for whom, and its limits | Max 4,000. `\n\n` for paragraphs |
+| `displayName` | Your product's name | Max 30. Not a generic word; don't add "MCP", "MCP Server" or "Plugin" |
+| `shortDescription` | The subtitle shown under the name | Max 30. No comparisons, pricing, trials, discounts or promotions |
+| `longDescription` | What it does, for whom, and its limits | Max 4,000. Same rules as the subtitle. `\n\n` for paragraphs |
 | `developerName` | Your company | Max 80. The directory shows your verified identity's name |
 | `category` | A category from the dashboard list, e.g. Education, Productivity, Developer Tools | |
 | `capabilities` | What users can do with it | Optional; up to 20, max 120 each |
@@ -98,15 +100,16 @@ Go top to bottom. Limits are for public submission and count every character, sp
 | `test_cases.positive` | 5 cases (see step 4) | Exactly 5 to submit |
 | `test_cases.negative` | 3 cases (see step 4) | Exactly 3 to submit |
 | `demo_recording_url` | Your video walkthrough | Required for review |
-| `commerce` | `false`, unless your plugin sells something | |
+| `commerce` | `false`, unless your plugin sells physical goods | Physical goods are the only commerce allowed. If `true`, add `commerce_description` |
 
 **Publication:** `extensions.com.openai.publication`
 
 | Field | Change it to | Rule |
 |---|---|---|
+| `countries` | `[]` to make it available everywhere | Or a list of country codes, such as `["US", "GB"]`. Leave the field out to keep the current targeting |
 | `release_notes` | What this version is or changes | |
 
-Optional extras the sample leaves out: `brandColor`, dark icons (`composerIconDark`, `logoDark`), `screenshots`, country availability (`publication.countries`) and translations. See the [field reference](https://developers.openai.com/plugins/deploy/submission#automatically-provide-submission-and-review-information).
+Optional extras the sample leaves out: `brandColor`, dark icons (`composerIconDark`, `logoDark`), `screenshots` (no longer shown in the directory: starter prompts replace them) and translations. See the [field reference](https://developers.openai.com/plugins/deploy/submission#automatically-provide-submission-and-review-information).
 
 ## 4. Write your test cases
 
@@ -194,8 +197,9 @@ Approval doesn't publish your plugin. Open the approved version and select **Pub
 
 ## After you're live
 
-- **Server changes** (new tools, new descriptions) are picked up automatically: OpenAI scans your server daily, and you can request a scan. No new ZIP needed.
-- **Metadata, icons or skills:** raise `version`, zip again, and select **Upload plugin to make changes**. Each new version is reviewed.
+- **Changes to existing tools** (fixes, descriptions) go live automatically once they pass OpenAI's daily scan. Select **Rescan** under **MCPs** after you deploy to check sooner. No new ZIP needed.
+- **New tools** stay unavailable until OpenAI approves them.
+- **Metadata, icons, skills or auth settings:** raise `version`, zip again, and select **Upload plugin to make changes**. Each new version is reviewed.
 - **Adding skills later is fine.** Adding an MCP server to a plugin that started with skills only is not supported, so put your server in the first ZIP.
 - **A new server URL:** contact OpenAI support. The update flow can't change it.
 

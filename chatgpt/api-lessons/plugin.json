@@ -95,6 +95,7 @@
         "commerce": false
       },
       "publication": {
+        "countries": [],
         "release_notes": "Version 3.0.0: API Lessons moves to its new server at lessons.mcp.level250.com, with filters for upcoming lessons and recordings."
       }
     }
