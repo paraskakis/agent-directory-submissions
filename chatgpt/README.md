@@ -197,8 +197,10 @@ If validation fails, fix the reported errors and upload again. A successful uplo
 3. **Domain verification,** at the bottom of the form: serve the token as plain text (only the token: no JSON, no list) at the URL shown, `https://<your MCP host>/.well-known/openai-apps-challenge`, then select **Verify Domain**.
    - **Challenge Base URL: leave it blank** to use your MCP server's host. Your only other choices are the root of your domain or a level in between: for `lessons.mcp.level250.com`, that's `level250.com` or `mcp.level250.com`. They only work if that address loads and serves the token itself, with no redirect. Anything else is refused.
 
-4. Select **Connect** (and sign in, if your server uses OAuth).
-5. Wait for the tool scan, then read its **Issues**. Fix your server and use **Rescan**, or **Reconnect** for connection problems.
+4. Run the first scan: after **Verify Domain**, the form's button reads **Refresh tools**. Select it (and sign in, if your server uses OAuth). **Rescan** on the server card only works once the server is connected.
+5. Wait for the scan, then read its **Issues**. When it works, you'll see your tools and "No findings in the latest MCP scan". Fix your server and use **Rescan**, or **Reconnect** for connection problems.
+
+   In your server's logs, the scan starts with an empty `POST` from `aiohttp` that may get a 415, followed by checks of several `/.well-known/oauth-…` addresses. That's OpenAI checking whether your server needs sign-in. It's not an error.
 
 ## 10. Complete the review details
 
