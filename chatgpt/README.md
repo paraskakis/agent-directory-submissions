@@ -39,7 +39,7 @@ You need all of these before you can submit (you can upload earlier and fix thin
 
 ## 1. Copy the sample
 
-Copy `api-lessons/` and rename the folder after your plugin, for example `acme-notes/`.
+Get the repo: on GitHub, select **Code → Download ZIP** and unzip it, or `git clone https://github.com/paraskakis/agent-directory-submissions.git`. Then copy the `chatgpt/api-lessons/` folder out of it and rename it after your plugin, for example `acme-notes/`. Work on that copy.
 
 ## 2. Edit `mcp.json`
 
@@ -143,14 +143,37 @@ Put your own square images in `assets/` with the same file names (`icon.png`, `l
 
 ## 6. Zip it
 
-From **inside** your folder, so `plugin.json` sits at the root of the ZIP:
+Your ZIP holds exactly these files, and nothing else:
 
 ```
-cd acme-notes
+plugin.json
+mcp.json
+assets/icon.png
+assets/logo.png
+```
+
+They can sit at the root of the ZIP or inside one top-level folder (`acme-notes/plugin.json`, …). OpenAI accepts both, but nothing may sit next to that folder.
+
+**Mac (Terminal):**
+
+```
+cd ~/path/to/acme-notes
 zip -r ../acme-notes.zip . -x '*.DS_Store'
 ```
 
-The ZIP must not contain `.app.json`, an `apps` field, or `hooks/`. Uploads with those are rejected.
+The ZIP lands next to your folder. Finder's **Compress** works too, but it adds a hidden `__MACOSX` folder next to yours. Remove it before you upload: `zip -d acme-notes.zip '__MACOSX/*'`.
+
+**Windows (File Explorer):** right-click your `acme-notes` folder and select **Compress to ZIP file** (or **Compress to → ZIP File**, depending on your version). On Windows 10, or if that option is missing, use **Send to → Compressed (zipped) folder** (on Windows 11 it's under **Show more options**).
+
+Don't use `Compress-Archive` in Windows PowerShell 5.1: it writes backslashes into the paths inside the ZIP, and the upload rejects them. If File Explorer gives you trouble, run this in Command Prompt or PowerShell, from inside your folder:
+
+```
+tar -a -c -f ..\acme-notes.zip plugin.json mcp.json assets
+```
+
+*(We've tested the Mac steps and the `tar` command. The File Explorer steps haven't been through OpenAI's upload yet.)*
+
+**Check it before you upload.** Open the ZIP (on a Mac: `unzip -l acme-notes.zip`) and make sure you see only those four files, in one folder at most. No README, `.DS_Store`, `__MACOSX`, `.app.json` or `hooks/`.
 
 ## 7. Upload
 
