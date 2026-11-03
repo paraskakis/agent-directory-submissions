@@ -194,7 +194,7 @@ If validation fails, fix the reported errors and upload again. A successful uplo
 
 1. Open **MCPs**, pick your server and select **Reconnect**. That opens the **Connect MCP server** form, even the first time. OpenAI's docs call this button Connect.
 2. Check the **MCP Server URL** and **Authentication**.
-3. **Domain verification,** at the bottom of the form: it shows a URL and a token. Serve the token as plain text (only the token: no JSON, no list) at that URL, `https://<your MCP host>/.well-known/openai-apps-challenge`, then select **Verify Domain**. To use a parent domain instead, enter it under **Challenge Base URL**.
+3. **Domain verification,** at the bottom of the form: it shows a URL and a token. Serve the token as plain text (only the token: no JSON, no list) at that URL, `https://<your MCP host>/.well-known/openai-apps-challenge`, then select **Verify Domain**. Leave **Challenge Base URL** blank to use your MCP server's own host. Fill it in only to use a parent domain you own (say `https://acme.com` for `mcp.acme.com`), for example when your website is easier to publish to, or when two plugins share one host. If your server runs on a hosting service's domain that you can't add files to, you'll need your own domain for it.
 4. Select **Connect** (and sign in, if your server uses OAuth).
 5. Wait for the tool scan, then read its **Issues**. Fix your server and use **Rescan**, or **Reconnect** for connection problems.
 
