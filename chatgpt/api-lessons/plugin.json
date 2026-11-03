@@ -1,0 +1,102 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "api-lessons",
+  "version": "3.0.0",
+  "description": "The complete, daily-updated list of Emmanuel Paraskakis's free lessons on APIs, MCP and AI agents: watch recordings, join upcoming ones, or find the course that goes deeper.",
+  "author": {
+    "name": "Level 250 Inc.",
+    "email": "support@level250.com",
+    "url": "https://www.level250.com"
+  },
+  "homepage": "https://www.level250.com/mcp/lessons/docs/v1",
+  "keywords": [
+    "lessons",
+    "apis",
+    "mcp",
+    "ai agents",
+    "api product management"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "API Lessons",
+        "shortDescription": "Find API and MCP training",
+        "longDescription": "The complete, daily-updated list of Emmanuel Paraskakis's free lessons on APIs, MCP and AI agents: watch recordings, join upcoming ones, or find the course that goes deeper.\n\nEvery lesson on his Maven page is here, with its date, what it covers, what you'll learn, the instructor and any guest speakers. Upcoming lessons are live and hands-on, over Zoom, in English, with a signup link. Past lessons have a recording to watch. Each one also names the Maven course or workshop that goes deeper on the topic.\n\nTopics: APIs and API product management, MCP, AI agents and agent payments, Claude connectors, ChatGPT plugins, agent skills, and product careers. Built for mid-career product, API and engineering professionals.\n\nEmmanuel Paraskakis will help you build what agents want. 3x VP Product (Apiary, Swagger, Oracle) | 1.3M APIs | Agent-ready APIs & MCP",
+        "developerName": "Level 250 Inc.",
+        "category": "Education",
+        "capabilities": [
+          "Find lessons on APIs, MCP, AI agents, plugins and product management",
+          "See upcoming live lessons with dates and signup links",
+          "Watch recordings of past lessons",
+          "Find the course that goes deeper on a lesson's topic"
+        ],
+        "websiteURL": "https://www.level250.com",
+        "supportURL": "https://www.level250.com/mcp/lessons/support/v1",
+        "privacyPolicyURL": "https://www.level250.com/mcp/lessons/privacy/v1",
+        "termsOfServiceURL": "https://www.level250.com/mcp/lessons/terms/v1",
+        "defaultPrompt": [
+          "What free lessons on MCP and AI agents are coming up?",
+          "Find a recording about agentic payments",
+          "Which course goes deeper after the MCP product manager lesson?"
+        ],
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Browse every lesson",
+              "prompt": "Show me all API Lessons",
+              "tools_triggered": "get_lessons",
+              "expected_behavior": "Calls get_lessons with no query and lists every lesson: upcoming ones first with dates and signup links, then recordings."
+            },
+            {
+              "description": "Find lessons for an audience",
+              "prompt": "I want API Lessons for Product Managers",
+              "tools_triggered": "get_lessons",
+              "expected_behavior": "Calls get_lessons with a query such as \"product manager\" and returns API product management lessons, such as \"The Double Life of the API Product Manager\" and \"How to break into API Product Management\", with their courses."
+            },
+            {
+              "description": "Find upcoming live training on a topic",
+              "prompt": "I'm searching for live training on MCP",
+              "tools_triggered": "get_lessons",
+              "expected_behavior": "Calls get_lessons with status Scheduled and query \"MCP\" and returns upcoming MCP lessons with their dates and signup links."
+            },
+            {
+              "description": "Find a recording on a topic",
+              "prompt": "Is there a recording about agentic payments?",
+              "tools_triggered": "get_lessons",
+              "expected_behavior": "Calls get_lessons with status On Demand and query \"payments\" and returns \"Agentic Payments: How AI Agents Move Money\" and \"Building APIs That Move Money\" with their recording links."
+            },
+            {
+              "description": "Find the course that goes deeper",
+              "prompt": "I watched the MCP product manager lesson. Which course goes deeper?",
+              "tools_triggered": "get_lessons",
+              "expected_behavior": "Calls get_lessons with a query such as \"MCP product manager\", finds \"Become an MCP Product Manager & Build Agent Experiences\" and names its course, \"Build What Agents Want: MCP, APIs, Skills & Plugins\", with its link."
+            }
+          ],
+          "negative": [
+            {
+              "description": "General design question, not a lesson search",
+              "prompt": "How to design a UI"
+            },
+            {
+              "description": "Product management basics, not a lesson search",
+              "prompt": "Learn the basics of Product Management"
+            },
+            {
+              "description": "Other instructors' lessons are out of scope",
+              "prompt": "All the lessons on Maven"
+            }
+          ]
+        },
+        "demo_recording_url": "https://www.level250.com/s/APILessons.mp4",
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Version 3.0.0: API Lessons moves to its new server at lessons.mcp.level250.com, with filters for upcoming lessons and recordings."
+      }
+    }
+  }
+}

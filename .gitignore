@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+._*
+
+# Build output
+*.zip
+
+# Editors
+.idea/
+.vscode/
+*.swp

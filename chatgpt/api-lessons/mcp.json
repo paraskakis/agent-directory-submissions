@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "api-lessons": {
+      "type": "streamable-http",
+      "url": "https://lessons.mcp.level250.com/mcp"
+    }
+  }
+}
