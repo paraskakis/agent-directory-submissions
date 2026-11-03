@@ -107,7 +107,7 @@ Go top to bottom. Limits are for public submission and count every character, sp
 | Field | Change it to | Rule |
 |---|---|---|
 | `countries` | `[]` to make it available everywhere | Or a list of country codes, such as `["US", "GB"]`. Leave the field out to keep the current targeting |
-| `release_notes` | What this version is or changes | |
+| `release_notes` | What this version is or changes | Users of your plugin can see these |
 
 Optional extras the sample leaves out: `brandColor`, dark icons (`composerIconDark`, `logoDark`), `screenshots` (no longer shown in the directory: starter prompts replace them) and translations. See the [field reference](https://developers.openai.com/plugins/deploy/submission#automatically-provide-submission-and-review-information).
 
@@ -126,6 +126,7 @@ A **positive** case is a prompt where your plugin should act:
 }
 ```
 
+- The portal shows these fields as **Scenario** (`description`), **User prompt** (`prompt`), **Tool triggered** (`tools_triggered`) and **Expected output** (`expected_behavior`).
 - `tools_triggered`: your real tool names (comma-separated if more than one).
 - `expected_behavior`: what the user should see. Name results that will stay true, such as past items, not ones that change daily.
 
@@ -206,7 +207,7 @@ If validation fails, fix the reported errors and upload again. A successful uplo
 
 In **Metadata & Skills**, open **Review information → Review details**:
 
-- Your test cases, video URL and release notes are imported from the ZIP and **read-only** here. To change them, edit `plugin.json` and upload again.
+- Four steps, each with a check mark when complete: **Countries and translations** (`"countries": []` shows as "All supported countries"), **Test cases** (5), **Negative test cases** (3), **Supporting content** (video and release notes). They're imported from the ZIP and **read-only** here. To change them, edit `plugin.json` and upload again. Only translations can be added in the dashboard.
 - If your server needs sign-in, enter the reviewer's test account and sign-in steps here, never in the ZIP.
 - Select **Save details**.
 
