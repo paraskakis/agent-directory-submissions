@@ -205,7 +205,7 @@ Approval doesn't publish your plugin. Open the approved version and select **Pub
 
 ## Using Plugin Creator instead
 
-OpenAI's Plugin Creator skill can build the folder for you: `$plugin-creator` in Codex, or `@plugin-creator` in ChatGPT's Work mode. The Plugins page also has a **Build a plugin** button, next to the upload, that opens it in Codex. What we saw when testing it:
+OpenAI's Plugin Creator skill can build the folder for you: `$plugin-creator` in Codex, or `@plugin-creator` in ChatGPT's Work mode. The Plugins page also has a **Build a plugin** button. It opens ChatGPT's Work mode with the Plugin Creator plugin and this prompt filled in: *"Help me build a plugin. Start by asking what it should do, then help me package it as a ZIP for upload to OpenAI Platform."* What we saw when testing it:
 
 1. Give it your server's URL: *"create a new plugin in the current directory called acme-notes with just this MCP server: https://example.com/mcp"*.
 2. It builds the older Codex layout (`.codex-plugin/plugin.json` + `.mcp.json`). Ask for the portable format: *"This uses the older codex plugin format - shouldn't it be the newer Agent Plugin spec that's portable?"*. It converts to `plugin.json` + `mcp.json`.
