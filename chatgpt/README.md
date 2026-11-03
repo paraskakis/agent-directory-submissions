@@ -204,6 +204,7 @@ If validation fails, fix the reported errors and upload again. A successful uplo
    | You can't add files to the MCP server, but you can to your website | `https://acme.com` | `https://acme.com/.well-known/openai-apps-challenge` |
    | Two plugins share `mcp.acme.com` (`/notes/mcp` and `/tasks/mcp`) | Notes: *(blank)* · Tasks: `https://acme.com` | One token at each address. A path like `https://mcp.acme.com/tasks` won't work: paths are ignored |
    | Your server runs on a hosting service's address, such as `https://acme-notes.somehost.app/mcp` | Doesn't help: you don't own `somehost.app` | Put your own domain in front of the server (for example `mcp.acme.com`) and submit that URL. Do it before your first submission: changing a published plugin's URL means contacting support |
+
 4. Select **Connect** (and sign in, if your server uses OAuth).
 5. Wait for the tool scan, then read its **Issues**. Fix your server and use **Rescan**, or **Reconnect** for connection problems.
 
