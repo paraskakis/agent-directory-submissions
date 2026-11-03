@@ -195,6 +195,15 @@ If validation fails, fix the reported errors and upload again. A successful uplo
 1. Open **MCPs**, pick your server and select **Reconnect**. That opens the **Connect MCP server** form, even the first time. OpenAI's docs call this button Connect.
 2. Check the **MCP Server URL** and **Authentication**.
 3. **Domain verification,** at the bottom of the form: it shows a URL and a token. Serve the token as plain text (only the token: no JSON, no list) at that URL, `https://<your MCP host>/.well-known/openai-apps-challenge`, then select **Verify Domain**. Leave **Challenge Base URL** blank to use your MCP server's own host. Fill it in only to use a parent domain you own (say `https://acme.com` for `mcp.acme.com`), for example when your website is easier to publish to, or when two plugins share one host. If your server runs on a hosting service's domain that you can't add files to, you'll need your own domain for it.
+
+   **Where the token goes, by example** (Acme's MCP server is at `https://mcp.acme.com/mcp`, its website at `acme.com`):
+
+   | Situation | Challenge Base URL | Serve the token at |
+   |---|---|---|
+   | You can add a file to your MCP server (most cases; API Lessons does this) | *(blank)* | `https://mcp.acme.com/.well-known/openai-apps-challenge` |
+   | You can't add files to the MCP server, but you can to your website | `https://acme.com` | `https://acme.com/.well-known/openai-apps-challenge` |
+   | Two plugins share `mcp.acme.com` (`/notes/mcp` and `/tasks/mcp`) | Notes: *(blank)* · Tasks: `https://acme.com` | One token at each address. A path like `https://mcp.acme.com/tasks` won't work: paths are ignored |
+   | Your server runs on a hosting service's address, such as `https://acme-notes.somehost.app/mcp` | Doesn't help: you don't own `somehost.app` | Put your own domain in front of the server (for example `mcp.acme.com`) and submit that URL. Do it before your first submission: changing a published plugin's URL means contacting support |
 4. Select **Connect** (and sign in, if your server uses OAuth).
 5. Wait for the tool scan, then read its **Issues**. Fix your server and use **Rescan**, or **Reconnect** for connection problems.
 
