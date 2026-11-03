@@ -242,4 +242,5 @@ Avoid OpenAI's other route for this, giving Plugin Creator a `plugin_asdk_app…
 - **One MCP server per plugin.** `mcp.json` can list several, but only one can be connected, and you choose which under **MCPs**. Test cases in `plugin.json` only work with exactly one server.
 - **Your support, privacy and terms pages must be live** before you submit, and name the same publisher.
 - **No secrets anywhere in the ZIP:** no headers, client secrets, test credentials or reviewer instructions.
-- **A ZIP with only an MCP server and no skill.** OpenAI's guide says a plugin can have "MCP connections, skills, or both", but its error list says a public submission ZIP needs at least one skill. If the upload stops with `plugin_runtime_surface_missing`, add one skill (`skills/<name>/SKILL.md`) and upload again.
+- **No skill needed.** A ZIP with only an MCP server uploads fine (tested November 2, 2026), although OpenAI's error list says a public ZIP needs at least one skill (`plugin_runtime_surface_missing`).
+- **Don't name other AI assistants** (Claude, Gemini, Copilot…) in your name or descriptions. The automated scan flags it: "The plugin's name or description references another AI assistant, model, or platform."
