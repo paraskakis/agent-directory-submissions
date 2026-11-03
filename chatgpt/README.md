@@ -152,7 +152,7 @@ assets/icon.png
 assets/logo.png
 ```
 
-They can sit at the root of the ZIP or inside one top-level folder (`acme-notes/plugin.json`, …). OpenAI accepts both, but nothing may sit next to that folder.
+They can sit at the root of the ZIP or inside one top-level folder (`acme-notes/plugin.json`, …). OpenAI accepts both, but nothing may sit next to that folder. The upload takes a `.zip` file only, not `.tar` or `.tar.gz`.
 
 **Mac (Terminal):**
 
@@ -165,7 +165,7 @@ The ZIP lands next to your folder. Finder's **Compress** works too, but it adds 
 
 **Windows (File Explorer):** right-click your `acme-notes` folder and select **Compress to ZIP file** (or **Compress to → ZIP File**, depending on your version). On Windows 10, or if that option is missing, use **Send to → Compressed (zipped) folder** (on Windows 11 it's under **Show more options**).
 
-Don't use `Compress-Archive` in Windows PowerShell 5.1: it writes backslashes into the paths inside the ZIP, and the upload rejects them. If File Explorer gives you trouble, run this in Command Prompt or PowerShell, from inside your folder:
+Don't use `Compress-Archive` in Windows PowerShell 5.1: it writes backslashes into the paths inside the ZIP, and the upload rejects them. If File Explorer gives you trouble, run this in Command Prompt or PowerShell, from inside your folder. Windows includes `tar`, and with `-a` and a name ending in `.zip` it writes a ZIP:
 
 ```
 tar -a -c -f ..\acme-notes.zip plugin.json mcp.json assets
