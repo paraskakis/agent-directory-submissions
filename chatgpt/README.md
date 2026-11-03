@@ -84,7 +84,7 @@ Go top to bottom. Limits are for public submission and count every character, sp
 | `shortDescription` | The subtitle shown under the name | Max 30. No comparisons, pricing, trials, discounts or promotions |
 | `longDescription` | What it does, for whom, and its limits | Max 4,000. Same rules as the subtitle. `\n\n` for paragraphs |
 | `developerName` | Your company | Max 80. The directory shows your verified identity's name |
-| `category` | A category from the dashboard list, e.g. Education, Productivity, Developer Tools | |
+| `category` | One of OpenAI's categories, e.g. Education & Research, Productivity, Developer Tools | Must match a name exactly. The list: [Listing and interface errors](https://developers.openai.com/plugins/deploy/submission-errors#listing-and-interface-errors) (`plugin_category_unknown`) |
 | `capabilities` | What users can do with it | Optional; up to 20, max 120 each |
 | `websiteURL` | Your product website | HTTPS. Required for review |
 | `supportURL` | Your support page | HTTPS. Required for review. An email address isn't enough |

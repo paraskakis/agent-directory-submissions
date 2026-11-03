@@ -23,7 +23,7 @@
         "shortDescription": "Find API and MCP training",
         "longDescription": "The complete, daily-updated list of Emmanuel Paraskakis's free lessons on APIs, MCP and AI agents: watch recordings, join upcoming ones, or find the course that goes deeper.\n\nEvery lesson on his Maven page is here, with its date, what it covers, what you'll learn, the instructor and any guest speakers. Upcoming lessons are live and hands-on, over Zoom, in English, with a signup link. Past lessons have a recording to watch. Each one also names the Maven course or workshop that goes deeper on the topic.\n\nTopics: APIs and API product management, MCP, AI agents and agent payments, Claude connectors, ChatGPT plugins, agent skills, and product careers. Built for mid-career product, API and engineering professionals.\n\nEmmanuel Paraskakis will help you build what agents want. 3x VP Product (Apiary, Swagger, Oracle) | 1.3M APIs | Agent-ready APIs & MCP",
         "developerName": "Level 250 Inc.",
-        "category": "Education",
+        "category": "Education & Research",
         "capabilities": [
           "Find lessons on APIs, MCP, AI agents, plugins and product management",
           "See upcoming live lessons with dates and signup links",
